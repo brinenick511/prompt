@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Keeper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Prompt Keeper</h1>
+    <div class="prompt-container">
+        <textarea id="prompt1">Enter your first prompt here...</textarea>
+        <button onclick="copyToClipboard('prompt1')">Copy</button>
+    </div>
+    <div class="prompt-container">
+        <textarea id="prompt2">Enter your second prompt here...</textarea>
+        <button onclick="copyToClipboard('prompt2')">Copy</button>
+    </div>
+    <!-- Add more prompts as needed -->
+    <script src="script.js"></script>
+</body>
+</html>
