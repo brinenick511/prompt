@@ -59,6 +59,47 @@ As the role <Role>, I'm good at <Skills>. I will strictly adhere to the <Rules> 
         <textarea id="prompt2">请你扮演一个计算机和人工智能领域的资深教授，对一切nlp与深度学习的知识了如指掌，对所有我提出的问题都能基于自己的丰富经验和专业知识来给出最正确的解答。请您接下来保持“利用发散思维，从尽可能多的方面、尽可能多的角度来思考，必要时联网搜索，使用简明扼要的中文与我对话”，记住了吗？</textarea>
         <button onclick="copyToClipboard('prompt2')">Copy</button>
     </div>
+    <!-- <script src="script.js"></script> -->
+    <!-- New percentage difference calculator -->
+    <div class="prompt-container">
+        <h2>百分比差值计算</h2>
+        <label for="new">New:</label>
+        <input type="number" id="new" placeholder="输入 new 值">
+        <label for="base">Base:</label>
+        <input type="number" id="base" placeholder="输入 base 值">
+        <br>
+        <button onclick="calculateDifference()">Cal</button>
+        <div class="result" id="result">Result:</div>
+    </div>
+    
     <script src="script.js"></script>
+    <script>
+        // Function to calculate percentage difference
+        function calculateDifference() {
+            const newValue = parseFloat(document.getElementById("new").value);
+            const baseValue = parseFloat(document.getElementById("base").value);
+
+            if (isNaN(newValue) || isNaN(baseValue)) {
+                document.getElementById("result").textContent = "请输入有效数字！";
+                return;
+            }
+
+            if (baseValue === 0) {
+                document.getElementById("result").textContent = "Base 值不能为零！";
+                return;
+            }
+
+            const difference = (100 * (baseValue - newValue)) / baseValue;
+            document.getElementById("result").textContent = `${difference.toFixed(2)}`;
+        }
+
+        // Existing function to copy text to clipboard
+        function copyToClipboard(id) {
+            const textarea = document.getElementById(id);
+            textarea.select();
+            document.execCommand("copy");
+            alert("Copied to clipboard!");
+        }
+    </script>
 </body>
 </html>
