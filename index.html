@@ -119,10 +119,16 @@ As the role <Role>, I'm good at <Skills>. I will strictly adhere to the <Rules> 
         // 新功能计算
         function calculateNewFunction() {
             // 获取用户输入
-            let kq = parseInt(document.getElementById("kq").value) || 32;
-            let vq = parseInt(document.getElementById("vq").value) || 32;
-            let km = parseInt(document.getElementById("km").value) || 32;
-            let vm = parseInt(document.getElementById("vm").value) || 32;
+            let kq = parseInt(document.getElementById("kq").value);
+            let vq = parseInt(document.getElementById("vq").value);
+            let km = parseInt(document.getElementById("km").value);
+            let vm = parseInt(document.getElementById("vm").value);
+
+            // 如果值为 NaN，设置为默认值 32
+            kq = isNaN(kq) ? 32 : kq;
+            vq = isNaN(vq) ? 32 : vq;
+            km = isNaN(km) ? 32 : km;
+            vm = isNaN(vm) ? 32 : vm;
 
             // 确保输入值在 0-32 的范围内
             kq = Math.min(Math.max(kq, 0), 32);
