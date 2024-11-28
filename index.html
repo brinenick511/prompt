@@ -71,6 +71,21 @@ As the role <Role>, I'm good at <Skills>. I will strictly adhere to the <Rules> 
         <button onclick="calculateDifference()">Cal</button>
         <div class="result" id="result">Result:</div>
     </div>
+
+    <div class="prompt-container">
+        <h2>新功能计算</h2>
+        <label for="kq">kq:</label>
+        <input type="number" id="kq" placeholder="输入 kq (0-32)">
+        <label for="vq">vq:</label>
+        <input type="number" id="vq" placeholder="输入 vq (0-32)">
+        <label for="km">km:</label>
+        <input type="number" id="km" placeholder="输入 km (0-32)">
+        <label for="vm">vm:</label>
+        <input type="number" id="vm" placeholder="输入 vm (0-32)">
+        <br>
+        <button onclick="calculateNewFunction()">计算</button>
+        <div class="result" id="newResult">Result:</div>
+    </div>
     
     <script src="script.js"></script>
     <script>
@@ -98,7 +113,38 @@ As the role <Role>, I'm good at <Skills>. I will strictly adhere to the <Rules> 
             const textarea = document.getElementById(id);
             textarea.select();
             document.execCommand("copy");
-            alert("Copied to clipboard!");
+            <!-- alert("Copied to clipboard!"); -->
+        }
+        
+        // 新功能计算
+        function calculateNewFunction() {
+            // 获取用户输入
+            let kq = parseInt(document.getElementById("kq").value) || 32;
+            let vq = parseInt(document.getElementById("vq").value) || 32;
+            let km = parseInt(document.getElementById("km").value) || 32;
+            let vm = parseInt(document.getElementById("vm").value) || 32;
+
+            // 确保输入值在 0-32 的范围内
+            kq = Math.min(Math.max(kq, 0), 32);
+            vq = Math.min(Math.max(vq, 0), 32);
+            km = Math.min(Math.max(km, 0), 32);
+            vm = Math.min(Math.max(vm, 0), 32);
+
+            // 计算 ans_k
+            const kx = Math.max(kq, km);
+            const kn = Math.min(kq, km);
+            const ans_k = ((32 - kx) / 2 + (kx - kn) + (kn - 0) * 2) / 32;
+
+            // 计算 ans_v
+            const vx = Math.max(vq, vm);
+            const vn = Math.min(vq, vm);
+            const ans_v = ((32 - vx) / 2 + (vx - vn) + (vn - 0) * 2) / 32;
+
+            // 计算最终结果
+            const ans = (ans_k + ans_v) / 2;
+
+            // 显示结果
+            document.getElementById("newResult").textContent = `Result: ${ans.toFixed(2)}`;
         }
     </script>
 </body>
